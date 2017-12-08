@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>创新创优评选</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    @Styles.Render("~/Content/menu.css")
+</head>
+<body>
+    <div id="app" class="content">
+            <div class="info">项目详情</div>
+            <div class="content">
+                <span class="c-title">{{project.ProjectName}}</span>
+                <p class="c-time">{{project.OrganName}}<span style="font-size: 14px;">（{{project.TypeName}}）</span></p>
+                <img v-if="project.ProjectImages" class="c-pic" :src="imgBaseUrl+project.ProjectImages">
+                <div class="c-introduce">
+                    {{project.ProjectIntro}}
+                </div>
+                <a class="c-button" href="http://tp.osintell.cn">返回</a>
+            </div>
+        </div>
+
+    @Scripts.Render("~/Scripts/vue/vue.min.js")
+    @Scripts.Render("~/Scripts/axios.min.js")
+    @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/Scripts/app/into.js")
+
+</body>
+</html>

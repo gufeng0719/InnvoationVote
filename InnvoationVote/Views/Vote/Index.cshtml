@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>创新创优评选</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Pragma" content="no-cache">
+    @Styles.Render("~/Content/menu.css")
+</head>
+<body>
+<div id="app" class="content">
+    <div id="pageCon" class="match_page masonry" style="padding-bottom: 30px">
+        <div class="title">党建和精神文明类</div>
+        <ul class="list_box masonry clearfix">
+            <li v-for="(project,index) in type1" class="picCon masonry-brick">
+                <div>
+                    <i class="number">{{project.ProjectId}}号</i>
+                    <a :href="'Vote/Intro?pid='+project.ProjectId" class="img">
+                        <img :src="imgBaseUrl+project.ProjectImages"/>
+                    </a>
+                    <div class="tou">
+                        <div class="divN">
+                            <span>{{project.ProjectName}}</span>
+                        </div>
+                        <div class="divP">
+                            <span>{{project.VoteNumber}}票</span>
+                            <a v-if="havote.type1.length==2||havote.type1.contains(parseInt(project.ProjectId))" class="disabled">投票</a>
+                            <a v-else href="javascript:void(0)" class="vote" @@click="vote(project)">投票</a>
+                        </div>
+                        
+                    </div><!--/tou-->
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="title">公共管理类</div>
+        <ul class="list_box masonry clearfix">
+            <li v-for="(project,index) in type2" class="picCon masonry-brick">
+                <div>
+                    <i class="number">{{project.ProjectId}}号</i>
+                    <a :href="'Vote/Intro?pid='+project.ProjectId" class="img">
+                        <img :src="imgBaseUrl+project.ProjectImages" />
+                    </a>
+                    <div class="tou">
+                        <div class="divN">
+                            <span>{{project.ProjectName}}</span>
+                        </div>
+                        <div class="divP">
+                            <span>{{project.VoteNumber}}票</span>
+                            <a v-if="havote.type2.length==2||havote.type2.contains(parseInt(project.ProjectId))" class="disabled">投票</a>
+                            <a v-else href="javascript:void(0)" class="vote" @@click="vote(project)">投票</a>
+                        </div>
+                        
+                    </div><!--/tou-->
+                </div>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <div class="title">经济建设类</div>
+        <ul class="list_box masonry clearfix">
+            <li v-for="(project,index) in type3" class="picCon masonry-brick">
+                <div>
+                    <i class="number">{{project.ProjectId}}号</i>
+                    <a :href="'Vote/Intro?pid='+project.ProjectId" class="img">
+                        <img :src="imgBaseUrl+project.ProjectImages" />
+                    </a>
+                    <div class="tou">
+                        <div class="divN">
+                            <span>{{project.ProjectName}}</span>
+                            
+                        </div>
+                        <div class="divP">
+                            <span>{{project.VoteNumber}}票</span>
+                            <a v-if="havote.type3.length==2||havote.type3.contains(parseInt(project.ProjectId))" class="disabled">投票</a>
+                            <a v-else href="javascript:void(0)" class="vote" @@click="vote(project)">投票</a>
+                        </div>
+                        
+                    </div><!--/tou-->
+                </div>
+            </li>
+        </ul>
+    </div>
+    </div>
+    @Scripts.Render("~/Scripts/jquery-1.9.1.js")
+    @Scripts.Render("~/Scripts/jquery.masonry.min.js")
+    @Scripts.Render("~/Scripts/vue/vue.min.js")
+    @Scripts.Render("~/Scripts/axios.min.js")
+    @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/Scripts/app/vote.js")
+    
+
+<script type="text/javascript">
+        $(function () {
+            var container = $('#pageCon ul');
+            container.imagesLoaded(function () {
+                container.masonry({
+                    itemSelector: '.picCon'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

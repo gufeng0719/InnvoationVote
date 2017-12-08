@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "创新创优统计";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="app">
+    <div class="table-where">
+        <el-row>
+            <el-col :span="2" class="layout-right layout-where">
+                项目序号：
+            </el-col>
+            <el-col :span="6">
+                <el-input v-model="where.ProjectId" placeholder="请输入项目序号"></el-input>
+            </el-col>
+            <el-col :span="2" class="layout-right layout-where">
+                项目名称：
+            </el-col>
+            <el-col :span="6">
+                <el-input v-model="where.ProjectName" placeholder="请输入项目名称"></el-input>
+            </el-col>
+            <el-col :span="2" class="layout-right layout-where">
+                项目类别：
+            </el-col>
+            <el-col :span="6">
+                <el-select v-model="where.TypeId" placeholder="请选择项目类别" :clearable='true' @@change="getpage(1)">
+                    <el-option key="1" label="党建和精神文明类" value="1">
+                    </el-option>
+                    <el-option key="2" label="公共管理类" value="2">
+                    </el-option>
+                    <el-option key="3" label="经济建设类" value="3">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <el-row>
+            <el-col :span="2" class="layout-right layout-where">
+                得票排序：
+            </el-col>
+            <el-col :span="6">
+                <el-select v-model="order.VoteNumber" placeholder="请选择得票排序" :clearable='true' @@change="getpage(1)">
+                    <el-option key="1" label="升序" value="1">
+                    </el-option>
+                    <el-option key="0" label="降序" value="0">
+                    </el-option>
+                </el-select>
+            </el-col>
+        </el-row>
+        <div class="table-btn">
+            <el-button type="primary" icon="search" @@click="getpage(currentPage)">搜索</el-button>
+        </div>
+    </div>
+    <div class="table-content">
+        <el-table v-loading.body="loading" :data="list" style="width: 100%">
+            <el-table-column label="序号" prop="ProjectId" width="80">
+            </el-table-column>
+            <el-table-column label="项目类别" prop="TypeName" width="150" >
+            </el-table-column>
+            <el-table-column label="单位名称" prop="OrganName" width="200">
+            </el-table-column>
+            <el-table-column label="项目名称" prop="ProjectName">
+            </el-table-column>
+            <el-table-column label="累计得票数" prop="VoteNumber" width="150">
+            </el-table-column>
+            @*<el-table-column label="操作">
+                <template scope="scope">
+                    <el-button size="small" class="table-detail-btn"
+                               @@click="selectDetail(scope.row.UserId)">消费明细</el-button>
+                </template>
+            </el-table-column>*@
+        </el-table>
+        @*<div class="table-page">
+            <el-pagination :current-page="currentPage"
+                           :page-size="50"
+                           layout="total, prev, pager, next, jumper"
+                           @@size-change="getpage"
+                           @@current-change="getpage"
+                           :total="total">
+            </el-pagination>
+        </div>*@
+    </div>
+</div>
+
+@section script{
+    <script src="../../Scripts/app/index.js"></script>
+}

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/element.css")
+    @Styles.Render("~/Content/main.css")
+</head>
+<body style="height:100%">
+    <div class="index-head">
+        <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+            <div class="el-col-19" style="padding-left: 10px; padding-right: 10px;">
+                <div class="logo-text">
+                    2017年创新创优项目网上评选
+                </div>
+            </div>
+            <div class="el-col-5" style="padding-left: 10px; padding-right: 10px;padding-top: 20px">
+                <span style="color: #bfcbd9;padding-left: 30%;">欢迎：</span>
+                <span style="color:#20a0ff;">@ViewBag.UserName</span>
+                <span style="color:#bfcbd9;margin-left: 16px;cursor:pointer"
+                      onclick="signout('@ViewBag.UserName')">退出登陆</span>
+            </div>
+        </div>
+    </div>
+    <div class="el-row" style="margin-left: -10px; margin-right: -10px;">
+        <div class="el-col-4" style="padding-left: 10px; padding-right: 10px;" id="menuApp">
+            <el-menu :default-active="defaultActive" class="el-menu-vertical" theme="dark">
+                <template v-for="(menu, menuIndex) in menuList">
+                    <el-menu-item :index="menu.id" :key="menuIndex"
+                                  @@click='routeTo(menu)'>
+                        <i :class="menu.icon"></i>
+                        {{menu.title}}
+                    </el-menu-item>
+                </template>
+            </el-menu>
+        </div>
+        <div class="el-col-20" style="padding-left: 10px; padding-right: 10px;">
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/Scripts/vue/vue.js")
+    @Scripts.Render("~/Scripts/element/index.js")
+    @Scripts.Render("~/Scripts/axios.min.js")
+    @Scripts.Render("~/Scripts/md5.min.js")
+    @Scripts.Render("~/Scripts/main.js")
+    @Scripts.Render("~/Scripts/app/menu.js")
+    @RenderSection("script", false)
+</body>
+</html>
