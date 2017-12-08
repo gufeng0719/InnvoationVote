@@ -2,7 +2,7 @@
     el: '#app',
     data: {
         list: [],
-        imgBaseUrl: '/Images/',
+        imgBaseUrl: '/Images/Index/',
         type1: [], //投票1类的
         type2: [], //投票2类
         type3: [], //投票3类

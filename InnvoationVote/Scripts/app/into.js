@@ -1,7 +1,7 @@
 ﻿var vm = new Vue({
     el: '#app',
     data: {
-        imgBaseUrl: '/Images/',
+        imgBaseUrl: '/Images/Into/',
         project: {
             
         }//项目对象
